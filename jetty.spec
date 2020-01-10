@@ -32,7 +32,7 @@
 
 Name:           jetty
 Version:        9.0.3
-Release:        6%{?dist}
+Release:        8%{?dist}
 Summary:        Java Webserver and Servlet Container
 
 # Jetty is dual licensed under both ASL 2.0 and EPL 1.0, see NOTICE.txt
@@ -515,11 +515,17 @@ done)
 %doc NOTICE.txt LICENSE*
 
 %changelog
+* Fri Jan 10 2014 Mikolaj Izdebski <mizdebsk@redhat.com> - 9.0.3-8
+- Fix typos in the changelog
+
+* Fri Dec 27 2013 Daniel Mach <dmach@redhat.com> - 9.0.3-7
+- Mass rebuild 2013-12-27
+
 * Wed Sep 25 2013 Mikolaj Izdebski <mizdebsk@redhat.com> - 9.0.3-6
 - Clean unused conditional code
 - Remove unused system-related code
 - Remove jetty binary package
-- Install license wiles with jatty-util package
+- Install license files with jetty-util package
 
 * Fri Jun 28 2013 Mikolaj Izdebski <mizdebsk@redhat.com> - 9.0.3-5
 - Rebuild to regenerate API documentation
