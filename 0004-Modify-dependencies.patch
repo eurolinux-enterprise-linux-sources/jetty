@@ -1,0 +1,52 @@
+From 6dae6b12759819afbe9abd60b27c45509ac50499 Mon Sep 17 00:00:00 2001
+From: Stanislav Ochotnicky <sochotnicky@redhat.com>
+Date: Tue, 24 Jan 2012 11:13:25 +0100
+Subject: [PATCH 4/8] Modify dependencies
+
+- remove sun httpserver
+- add tomcat-jasper
+---
+ jetty-http-spi/pom.xml                 |    6 ------
+ jetty-osgi/jetty-osgi-boot-jsp/pom.xml |    9 +++++++++
+ 2 files changed, 9 insertions(+), 6 deletions(-)
+
+diff --git a/jetty-http-spi/pom.xml b/jetty-http-spi/pom.xml
+index c641c36..922bad0 100644
+--- a/jetty-http-spi/pom.xml
++++ b/jetty-http-spi/pom.xml
+@@ -17,12 +17,6 @@
+       <scope>test</scope>
+     </dependency>
+     <dependency>
+-      <groupId>com.sun.net.httpserver</groupId>
+-      <artifactId>http</artifactId>
+-      <version>20070405</version>
+-      <scope>provided</scope>
+-    </dependency>
+-    <dependency>
+       <groupId>org.eclipse.jetty</groupId>
+       <artifactId>jetty-server</artifactId>
+       <version>${project.version}</version>
+diff --git a/jetty-osgi/jetty-osgi-boot-jsp/pom.xml b/jetty-osgi/jetty-osgi-boot-jsp/pom.xml
+index 5fbc952..eaba79e 100644
+--- a/jetty-osgi/jetty-osgi-boot-jsp/pom.xml
++++ b/jetty-osgi/jetty-osgi-boot-jsp/pom.xml
+@@ -41,6 +41,15 @@
+       <groupId>org.eclipse.jetty</groupId>
+       <artifactId>jetty-jsp</artifactId>
+       <version>${project.version}</version>
++    </dependency>  
++    <dependency>
++     <groupId>org.apache.tomcat</groupId>
++     <artifactId>tomcat-jasper</artifactId>
++     <version>7.0.23</version>
++    </dependency>
++    <dependency>
++     <groupId>${servlet.spec.groupId}</groupId>
++     <artifactId>${servlet.spec.artifactId}</artifactId>
+     </dependency>
+   </dependencies>
+ 
+-- 
+1.7.7.6
+

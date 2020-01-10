@@ -1,0 +1,30 @@
+#!/bin/bash
+
+if [ -z "$JETTY_PID" ]
+then
+   export JETTY_PID=/dev/null
+fi
+
+if [ -z "$JETTY_PORT" ]
+then
+   export JETTY_PORT=8088
+fi
+
+export JETTY_HOME=/usr/share/jetty
+if [ -z "$JETTY_HOME" ] 
+then
+  JETTY_HOME_1=`dirname "$0"`
+  JETTY_HOME_1=`dirname "$JETTY_HOME_1"`
+  JETTY_HOME=${JETTY_HOME_1} 
+fi
+
+cd $JETTY_HOME
+
+# Try to create work directory if not exists
+if [ ! -d work ]; then
+    (umask 022 && mkdir -p "$(readlink -f work)")
+fi
+
+exec /usr/bin/java -Djetty.class.path=/usr/share/java/commons-logging.jar -Djetty.port=$JETTY_PORT  -jar start.jar etc/jetty-logging.xml etc/jetty.xml 2>/dev/null &
+echo $! >$JETTY_PID
+

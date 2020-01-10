@@ -1,0 +1,30 @@
+From 2b9f0418ba16e828657f5353510f5d28a60d022a Mon Sep 17 00:00:00 2001
+From: Michal Srb <msrb@redhat.com>
+Date: Mon, 22 Apr 2013 07:56:08 +0200
+Subject: [PATCH] create work dir
+
+---
+ jetty-distribution/src/main/resources/bin/jetty.sh | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/jetty-distribution/src/main/resources/bin/jetty.sh b/jetty-distribution/src/main/resources/bin/jetty.sh
+index cc3f771..9bd15c7 100755
+--- a/jetty-distribution/src/main/resources/bin/jetty.sh
++++ b/jetty-distribution/src/main/resources/bin/jetty.sh
+@@ -348,6 +348,13 @@ JETTY_STATE=$(dirname $JETTY_PID)/jetty.state
+ JAVA_OPTIONS+=("-Djetty.state=$JETTY_STATE")
+ rm -f $JETTY_STATE
+ 
++#####################################################
++# Try to create work directory if not exists
++#####################################################
++if [ ! -d work ]; then
++    (umask 022 && mkdir -p "$(readlink -f work)")
++fi
++
+ ##################################################
+ # Setup JAVA if unset
+ ##################################################
+-- 
+1.8.1.4
+
